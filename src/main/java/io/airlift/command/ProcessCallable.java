@@ -20,7 +20,7 @@ import java.util.concurrent.Executor;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 class ProcessCallable
-        implements Callable<Integer>
+        implements Callable<CommandResult>
 {
     private final Command command;
     private final Executor executor;
@@ -32,7 +32,7 @@ class ProcessCallable
     }
 
     @Override
-    public Integer call()
+    public CommandResult call()
             throws CommandFailedException, InterruptedException
     {
         ProcessBuilder processBuilder = new ProcessBuilder(command.getCommand());
@@ -58,12 +58,12 @@ class ProcessCallable
             // wait for command to exit
             int exitCode = process.waitFor();
 
+            String out = outputProcessor.getOutput();
             // validate exit code
             if (!command.getSuccessfulExitCodes().contains(exitCode)) {
-                String out = outputProcessor.getOutput();
                 throw new CommandFailedException(command, exitCode, out);
             }
-            return exitCode;
+            return new CommandResult(exitCode, out);
         }
         finally {
             try {

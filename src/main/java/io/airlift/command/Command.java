@@ -164,11 +164,11 @@ public class Command
         return new Command(command, successfulExitCodes, directory, environment, timeLimit);
     }
 
-    public int execute(Executor executor)
+    public CommandResult execute(Executor executor)
             throws CommandFailedException
     {
         ProcessCallable processCallable = new ProcessCallable(this, executor);
-        Future<Integer> future = submit(executor, processCallable);
+        Future<CommandResult> future = submit(executor, processCallable);
 
         try {
             return future.get(timeLimit.toMillis(), TimeUnit.MILLISECONDS);

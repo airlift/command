@@ -118,7 +118,7 @@ public class TestCommand
     {
         int actual = new Command("bash", "-c", "set")
                 .setTimeLimit(1, TimeUnit.SECONDS)
-                .execute(executor);
+                .execute(executor).getExitCode();
         assertEquals(actual, 0);
     }
 
@@ -148,7 +148,7 @@ public class TestCommand
         int actual = new Command("bash", "-c", "exit 33")
                 .setSuccessfulExitCodes(33)
                 .setTimeLimit(1, TimeUnit.SECONDS)
-                .execute(executor);
+                .execute(executor).getExitCode();
         assertEquals(actual, 33);
     }
 
