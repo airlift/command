@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>command</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
 
     <name>command</name>
@@ -20,7 +20,7 @@
         <connection>scm:git:git://github.com/airlift/command.git</connection>
         <developerConnection>scm:git:git@github.com:airlift/command.git</developerConnection>
         <url>https://github.com/airlift/command</url>
-      <tag>HEAD</tag>
+      <tag>0.2</tag>
   </scm>
 
     <inceptionYear>2013</inceptionYear>
