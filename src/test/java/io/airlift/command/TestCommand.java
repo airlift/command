@@ -115,10 +115,12 @@ public class TestCommand
     public void execSimple()
             throws Exception
     {
-        int actual = new Command("bash", "-c", "set")
+        CommandResult result = new Command("bash", "-c", "echo hello")
                 .setTimeLimit(1, TimeUnit.SECONDS)
-                .execute(executor).getExitCode();
-        assertEquals(actual, 0);
+                .execute(executor);
+
+        assertEquals(result.getExitCode(), 0);
+        assertEquals(result.getCommandOutput(), "hello\n");
     }
 
     @SuppressWarnings("ExpectedExceptionNeverThrownTestNG")
