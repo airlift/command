@@ -20,8 +20,8 @@
         <connection>scm:git:git://github.com/airlift/command.git</connection>
         <developerConnection>scm:git:git@github.com:airlift/command.git</developerConnection>
         <url>https://github.com/airlift/command</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <inceptionYear>2013</inceptionYear>
 
@@ -34,13 +34,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>concurrent</artifactId>
-            <version>${dep.airlift.version}</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>units</artifactId>
@@ -67,6 +60,13 @@
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>testing</artifactId>
+            <version>${dep.airlift.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.airlift</groupId>
+            <artifactId>concurrent</artifactId>
             <version>${dep.airlift.version}</version>
             <scope>test</scope>
         </dependency>

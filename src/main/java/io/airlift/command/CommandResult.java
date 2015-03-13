@@ -15,23 +15,23 @@ package io.airlift.command;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class CommandResult 
-{  
-    private int exitCode;
-    private String commandOutput;
-  
-    public CommandResult(int exitCode, String commandOutput) 
+public class CommandResult
+{
+    private final int exitCode;
+    private final String commandOutput;
+
+    public CommandResult(int exitCode, String commandOutput)
     {
         this.exitCode = exitCode;
         this.commandOutput = checkNotNull(commandOutput, "commandOutput is null");
     }
 
-    public int getExitCode() 
+    public int getExitCode()
     {
         return exitCode;
     }
 
-    public String getCommandOutput() 
+    public String getCommandOutput()
     {
         return commandOutput;
     }

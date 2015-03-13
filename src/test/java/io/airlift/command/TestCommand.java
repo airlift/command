@@ -111,7 +111,6 @@ public class TestCommand
         assertEquals(command.getTimeLimit(), new Duration(5, TimeUnit.SECONDS));
     }
 
-
     @Test
     public void execSimple()
             throws Exception

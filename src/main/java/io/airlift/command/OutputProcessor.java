@@ -18,7 +18,6 @@ import com.google.common.io.CharStreams;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
@@ -41,16 +40,7 @@ class OutputProcessor
 
     public void start()
     {
-        outputFuture = submit(executor, new Callable<String>()
-        {
-            @SuppressWarnings("IOResourceOpenedButNotSafelyClosed")
-            @Override
-            public String call()
-                    throws IOException
-            {
-                return CharStreams.toString(new InputStreamReader(inputStream, UTF_8));
-            }
-        });
+        outputFuture = submit(executor, () -> CharStreams.toString(new InputStreamReader(inputStream, UTF_8)));
     }
 
     public String getOutput()
