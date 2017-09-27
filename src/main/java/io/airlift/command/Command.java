@@ -38,7 +38,7 @@ import java.util.concurrent.TimeoutException;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 @Immutable
 public class Command
@@ -60,12 +60,12 @@ public class Command
 
     public Command(List<String> command, Set<Integer> successfulExitCodes, File directory, Map<String, String> environment, Duration timeLimit)
     {
-        checkNotNull(command, "command is null");
+        requireNonNull(command, "command is null");
         checkArgument(!command.isEmpty(), "command is empty");
-        checkNotNull(successfulExitCodes, "successfulExitCodes is null");
+        requireNonNull(successfulExitCodes, "successfulExitCodes is null");
         checkArgument(!successfulExitCodes.isEmpty(), "successfulExitCodes is empty");
-        checkNotNull(directory, "directory is null");
-        checkNotNull(timeLimit, "timeLimit is null");
+        requireNonNull(directory, "directory is null");
+        requireNonNull(timeLimit, "timeLimit is null");
 
         this.command = ImmutableList.copyOf(command);
         // exit codes have a default and thus are required
@@ -82,13 +82,13 @@ public class Command
 
     public Command addArgs(String... args)
     {
-        checkNotNull(args, "args is null");
+        requireNonNull(args, "args is null");
         return addArgs(ImmutableList.copyOf(args));
     }
 
     public Command addArgs(Iterable<String> args)
     {
-        checkNotNull(args, "args is null");
+        requireNonNull(args, "args is null");
         ImmutableList.Builder<String> command = ImmutableList.<String>builder().addAll(this.command).addAll(args);
         return new Command(command.build(), successfulExitCodes, directory, environment, timeLimit);
     }
@@ -100,15 +100,15 @@ public class Command
 
     public Command addEnvironment(String name, String value)
     {
-        checkNotNull(name, "name is null");
-        checkNotNull(value, "value is null");
+        requireNonNull(name, "name is null");
+        requireNonNull(value, "value is null");
         ImmutableMap.Builder<String, String> builder = ImmutableMap.<String, String>builder().putAll(this.environment).put(name, value);
         return new Command(command, successfulExitCodes, directory, builder.build(), timeLimit);
     }
 
     public Command addEnvironment(Map<String, String> environment)
     {
-        checkNotNull(environment, "environment is null");
+        requireNonNull(environment, "environment is null");
         ImmutableMap.Builder<String, String> builder = ImmutableMap.<String, String>builder().putAll(this.environment).putAll(environment);
         return new Command(command, successfulExitCodes, directory, builder.build(), timeLimit);
     }
@@ -120,13 +120,13 @@ public class Command
 
     public Command setSuccessfulExitCodes(int... successfulExitCodes)
     {
-        checkNotNull(successfulExitCodes, "successfulExitCodes is null");
+        requireNonNull(successfulExitCodes, "successfulExitCodes is null");
         return setSuccessfulExitCodes(ImmutableSet.copyOf(Ints.asList(successfulExitCodes)));
     }
 
     public Command setSuccessfulExitCodes(Set<Integer> successfulExitCodes)
     {
-        checkNotNull(successfulExitCodes, "successfulExitCodes is null");
+        requireNonNull(successfulExitCodes, "successfulExitCodes is null");
         checkArgument(!successfulExitCodes.isEmpty(), "successfulExitCodes is empty");
         return new Command(command, successfulExitCodes, directory, environment, timeLimit);
     }
@@ -138,13 +138,13 @@ public class Command
 
     public Command setDirectory(String directory)
     {
-        checkNotNull(directory, "directory is null");
+        requireNonNull(directory, "directory is null");
         return setDirectory(new File(directory));
     }
 
     public Command setDirectory(File directory)
     {
-        checkNotNull(directory, "directory is null");
+        requireNonNull(directory, "directory is null");
         return new Command(command, successfulExitCodes, directory, environment, timeLimit);
     }
 
@@ -160,7 +160,7 @@ public class Command
 
     public Command setTimeLimit(Duration timeLimit)
     {
-        checkNotNull(timeLimit, "timeLimit is null");
+        requireNonNull(timeLimit, "timeLimit is null");
         return new Command(command, successfulExitCodes, directory, environment, timeLimit);
     }
 

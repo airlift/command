@@ -22,9 +22,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
 
-import static com.google.common.base.Preconditions.checkNotNull;
 import static io.airlift.command.Command.submit;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Objects.requireNonNull;
 
 class OutputProcessor
 {
@@ -34,8 +34,8 @@ class OutputProcessor
 
     public OutputProcessor(Process process, Executor executor)
     {
-        this.inputStream = checkNotNull(process, "process is null").getInputStream();
-        this.executor = checkNotNull(executor, "executor is null");
+        this.inputStream = requireNonNull(process, "process is null").getInputStream();
+        this.executor = requireNonNull(executor, "executor is null");
     }
 
     public void start()

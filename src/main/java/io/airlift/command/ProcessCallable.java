@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 class ProcessCallable
         implements Callable<CommandResult>
@@ -27,8 +27,8 @@ class ProcessCallable
 
     public ProcessCallable(Command command, Executor executor)
     {
-        this.command = checkNotNull(command, "command is null");
-        this.executor = checkNotNull(executor, "executor is null");
+        this.command = requireNonNull(command, "command is null");
+        this.executor = requireNonNull(executor, "executor is null");
     }
 
     @Override

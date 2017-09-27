@@ -13,7 +13,7 @@
  */
 package io.airlift.command;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 public class CommandResult
 {
@@ -23,7 +23,7 @@ public class CommandResult
     public CommandResult(int exitCode, String commandOutput)
     {
         this.exitCode = exitCode;
-        this.commandOutput = checkNotNull(commandOutput, "commandOutput is null");
+        this.commandOutput = requireNonNull(commandOutput, "commandOutput is null");
     }
 
     public int getExitCode()
